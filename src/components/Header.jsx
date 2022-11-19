@@ -1,5 +1,6 @@
 import React from 'react'
 import { Button } from "flowbite-react";
+import { Link } from 'react-router-dom'
 
 const Header = () => {
   return (
@@ -9,7 +10,9 @@ const Header = () => {
           <h1 className='font-bold text-2xl'>TASK TRACKER</h1>
         </div>
         <div>
-          <Button>Logout</Button>
+          <Link to='/login'>
+            <Button>Logout</Button>
+          </Link>
         </div>
       </div>
     </header>
