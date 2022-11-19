@@ -1,0 +1,79 @@
+const obj = {
+    {
+        Task-name : "Meeting with Client",
+        Date : 20-11-2022,
+        Time : 4:30,
+        Details: "",
+        Status:
+    },
+    {
+        Task-name : "Market Survey for product",
+        Date : 21-11-2022,
+        Time : 8:30,
+        Details: "",
+        Status:
+    },
+    {
+        Task-name : "Buid wireframe for the product",
+        Date : 28-11-2022,
+        Time : 1:30,
+        Details: "",
+        Status:
+    },
+    {
+        Task-name : "Deisgn UI",
+        Date : 28-11-2022,
+        Time : 4:30,
+        Details: "",
+        Status:
+    },
+    {
+        Task-name : "Meeting with Client",
+        Date : 29-11-2022,
+        Time : 4:30,
+        Details: "",
+        Status:
+    },
+    {
+        Task-name : "Meeting with team of Developers",
+        Date : 1-12-2022,
+        Time : 4:30,
+        Details: "",
+        Status:
+    },
+    {
+        Task-name : "Development of software begin",
+        Date : 3-11-2022,
+        Time : 4:30,
+        Details: "",
+        Status:
+    },
+    {
+        Task-name : "Presentation of MVP to client",
+        Date : 20-11-2022,
+        Time : 4:30,
+        Details: "",
+        Status:
+    },{
+        Task-name : "Modification/addition of features as per survey and client specification",
+        Date : 20-11-2022,
+        Time : 4:30,
+        Details: "",
+        Status:
+    },
+    {
+        Task-name : "Progress report check",
+        Date : 20-11-2022,
+        Time : 4:30,
+        Details: "",
+        Status:
+    },
+    {
+        Task-name : "Product Lunch",
+        Date : 20-11-2022,
+        Time : 4:30,
+        Details: "",
+        Status:
+    }
+
+}
