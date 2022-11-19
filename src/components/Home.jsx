@@ -1,13 +1,14 @@
 import React from "react";
 import Tableheader from "./Tableheader";
+import Header from './Header'
 
-const Header = () => {
+const Home = () => {
   return (
     <div className="">
-      <p>Task-Tracker</p>
+      <Header />
       <Tableheader />
     </div>
   );
 };
 
-export default Header;
+export default Home;

@@ -23,7 +23,7 @@ const Tableheader = () => {
     setDeleteTaskModal(true)
   }
   return (
-    <div className="allcontain">
+    <div className="allcontain pt-[120px]">
 
       <AddingTaskModal
         addTaskModal={addTaskModal}
