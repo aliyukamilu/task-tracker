@@ -23,6 +23,11 @@ const addTodoReducer = createSlice({
       return newData
     },
 
+    filterTodo: (state, action) => {
+      let newData = state.filter((item) => item.date === action.payload);
+      return newData
+    },
+
     updateTodos: (state, action) => {
       return state.map((todo) => {
         if (todo.id === action.payload.id) {
@@ -41,5 +46,5 @@ const addTodoReducer = createSlice({
 
 });
 
-export const { addTodos, deleteTodos, updateTodos } = addTodoReducer.actions;
+export const { addTodos, deleteTodos, updateTodos, filterTodo } = addTodoReducer.actions;
 export const reducer = addTodoReducer.reducer;

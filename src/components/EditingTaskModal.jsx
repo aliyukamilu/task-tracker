@@ -15,7 +15,7 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-const EditingTaskModal = ({ editTaskModal, setEditTaskModal, todoName, taskId, taskDetail, todos }) => {
+const EditingTaskModal = ({ editTaskModal, setEditTaskModal, todoName, taskId, todos }) => {
 
   const dispatch = useDispatch();
   const [taskName, setTaskName] = useState(todoName)
@@ -36,7 +36,7 @@ const EditingTaskModal = ({ editTaskModal, setEditTaskModal, todoName, taskId, t
   }
   function handleChangeStatus(evt) {
     setTaskStatus(evt.target.value)
-  } 
+  }
   function handleChangeDet(evt) {
     setTaskDetails(evt.target.value)
   }

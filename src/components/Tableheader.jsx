@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Table, Button, TextInput, } from "flowbite-react";
 import { useNavigate } from "react-router-dom";
-import { deleteTodos } from "../redux/reducer";
+import { deleteTodos, filterTodo } from "../redux/reducer";
 
 import { AiOutlinePlus } from 'react-icons/ai'
 import { connect, useDispatch } from "react-redux";
@@ -13,11 +13,11 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    addTodo: (obj) => dispatch(addTodos(obj)),
-  };
-};
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     addTodo: (obj) => dispatch(addTodos(obj)),
+//   };
+// };
 
 const Tableheader = (props) => {
   const [editTaskModal, setEditTaskModal] = useState(false)
@@ -25,7 +25,7 @@ const Tableheader = (props) => {
   const [taskId, setTaskId] = useState(0)
   const [taskDate, setTaskDate] = useState('')
   const [taskDetail, setTaskDetail] = useState('')
-  const [dBData, setDbData] = useState(JSON.parse(sessionStorage.getItem('todoData')))
+
   const [allTodos, setAllTodos] = useState(props.todos)
 
   const userLogged = sessionStorage.getItem('todo_user')
@@ -62,18 +62,11 @@ const Tableheader = (props) => {
   }
 
   function filterByDate(evt) {
+    let Data = props.todos
     let value = evt.target.value
-
-    let allMatched = []
-    !props.todos.forEach((todoo, i) => {
-      if (todoo.date === value) {
-        allMatched.push(todoo)
-      }
-
-      if (i === allTodos.length - 1) {
-        props.todos = allMatched
-      }
-    })
+    let newData = Data.filter(itm => itm.date === value)
+    setAllTodos(newData)
+    
   }
 
   return (
@@ -137,4 +130,4 @@ const Tableheader = (props) => {
 };
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Tableheader);
+export default connect(mapStateToProps)(Tableheader);
