@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Table, Button, TextInput, } from "flowbite-react";
+import { useNavigate } from "react-router-dom";
 
-import AddingTaskModal from './AddingTaskModal'
 import EditingTaskModal from './EditingTaskModal'
 import DeletingTaskModal from './DeletingTaskModal'
 
@@ -21,12 +21,13 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 const Tableheader = (props) => {
-  const [addTaskModal, setAddTaskModal] = useState(false)
   const [editTaskModal, setEditTaskModal] = useState(false)
   const [deleteTaskModal, setDeleteTaskModal] = useState(false)
 
+  const navigate = useNavigate();
+
   const addTask = () => {
-    setAddTaskModal(true)
+    navigate('/add')
   }
   const EditTaskBtn = () => {
     setEditTaskModal(true)
@@ -38,9 +39,6 @@ const Tableheader = (props) => {
   return (
     <div className="allcontain pt-[120px]">
 
-      <AddingTaskModal
-        addTaskModal={addTaskModal}
-        setAddTaskModal={setAddTaskModal} />
       <EditingTaskModal
         editTaskModal={editTaskModal}
         setEditTaskModal={setEditTaskModal}

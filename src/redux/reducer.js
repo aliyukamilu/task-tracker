@@ -1,6 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = [];
+const initialState = [{
+  id: Math.floor(Math.random() * 1000),
+  item: 'todo',
+  date: '22-11-2022',
+  status: 'Ongoing',
+}];
 
 const addTodoReducer = createSlice({
   name: "todos",

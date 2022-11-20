@@ -1,7 +1,34 @@
-import React from 'react'
-import { Button, TextInput, Modal, Label } from "flowbite-react";
-import { Link } from 'react-router-dom'
+import React, { useState } from 'react'
+import { Button, TextInput, Label } from "flowbite-react";
+import { useNavigate } from "react-router-dom";
+
 const Login = () => {
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    username: "",
+    password: ""
+  })
+
+  function handleChange(evt) {
+    const value = evt.target.value;
+    setFormData((prevState) => ({ ...prevState, [evt.target.id]: value }))
+  }
+
+  const logMeIn = (e) => {
+    e.preventDefault()
+
+    if (formData.username == "" || formData.password == "") {
+      alert('Fill in the blanks')
+    } else if (formData.username === "faruk" && formData.password === "12345") {
+      sessionStorage.setItem("todo_user", formData.username);
+      navigate('/')
+    } else {
+      alert('put in the correct credentials !!')
+    }
+
+
+  }
+
   return (
     <div className='d-flex w-full'>
       <div className='shadow-2xl rounded-md p-5 w-[500px]'>
@@ -17,6 +44,8 @@ const Login = () => {
             <TextInput
               id="username"
               type="text"
+              onChange={handleChange}
+              defaultValue={formData.twitter}
               required={true}
               shadow={true}
             />
@@ -31,15 +60,15 @@ const Login = () => {
             <TextInput
               id="password"
               type="password"
+              onChange={handleChange}
+              defaultValue={formData.twitter}
               required={true}
               shadow={true}
             />
           </div>
-          <Link to='/' className='w-full'>
-            <Button type="submit" className='mt-10 w-full'>
-              Login
-            </Button>
-          </Link>
+          <Button type="submit" onClick={logMeIn} className='mt-10 w-full'>
+            Login
+          </Button>
         </form>
       </div>
     </div>
