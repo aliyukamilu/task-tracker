@@ -109,8 +109,8 @@ const Tableheader = (props) => {
             ))}
           </Table.Head>
           <Table.Body className="divide-y">
-            {dBData.length > 0 &&
-              dBData.map((item, i) => {
+            {props.todos.length > 0 &&
+              props.todos.map((item, i) => {
                 return (
                   <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800" key={item.id}>
                     <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
