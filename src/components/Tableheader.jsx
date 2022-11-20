@@ -6,8 +6,21 @@ import EditingTaskModal from './EditingTaskModal'
 import DeletingTaskModal from './DeletingTaskModal'
 
 import { AiOutlinePlus } from 'react-icons/ai'
+import { connect } from "react-redux";
 
-const Tableheader = () => {
+const mapStateToProps = (state) => {
+  return {
+    todos: state,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addTodo: (obj) => dispatch(addTodos(obj)),
+  };
+};
+
+const Tableheader = (props) => {
   const [addTaskModal, setAddTaskModal] = useState(false)
   const [editTaskModal, setEditTaskModal] = useState(false)
   const [deleteTaskModal, setDeleteTaskModal] = useState(false)
@@ -15,13 +28,13 @@ const Tableheader = () => {
   const addTask = () => {
     setAddTaskModal(true)
   }
-
   const EditTaskBtn = () => {
     setEditTaskModal(true)
   }
   const deleTaskBtn = () => {
     setDeleteTaskModal(true)
   }
+
   return (
     <div className="allcontain pt-[120px]">
 
@@ -57,20 +70,25 @@ const Tableheader = () => {
           <Table.HeadCell>Action</Table.HeadCell>
         </Table.Head>
         <Table.Body className="divide-y">
+          {props.todos.length > 0 &&
+            props.todos.map((item) => {
+              return (
+                <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800" key={item.id}>
+                  <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
+                    {item.item}
+                  </Table.Cell>
+                  <Table.Cell>
+                    {item.date}
+                  </Table.Cell>
+                  <Table.Cell>{item.status}</Table.Cell>
+                  <Table.Cell className="flex space-x-2">
+                    <Button size="xs" onClick={EditTaskBtn}>Edit</Button>
+                    <Button size="xs" color='failure' onClick={deleTaskBtn}>Delete</Button>
+                  </Table.Cell>
+                </Table.Row>
+              )
+            })}
 
-          <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
-            <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-              Complete pricelist implementation
-            </Table.Cell>
-            <Table.Cell>
-              23rd September 2022 12:33
-            </Table.Cell>
-            <Table.Cell>Ongoing</Table.Cell>
-            <Table.Cell className="flex space-x-2">
-              <Button size="xs" onClick={EditTaskBtn}>Edit</Button>
-              <Button size="xs" color='failure' onClick={deleTaskBtn}>Delete</Button>
-            </Table.Cell>
-          </Table.Row>
 
         </Table.Body>
       </Table>
@@ -79,4 +97,4 @@ const Tableheader = () => {
 };
 
 
-export default Tableheader;
+export default connect(mapStateToProps, mapDispatchToProps)(Tableheader);
