@@ -25,7 +25,7 @@ const Tableheader = (props) => {
   const [taskId, setTaskId] = useState(0)
   const [taskDate, setTaskDate] = useState('')
   const [taskDetail, setTaskDetail] = useState('')
-
+  const [dBData, setDbData] = useState(JSON.parse(sessionStorage.getItem('todoData')))
   const [allTodos, setAllTodos] = useState(props.todos)
 
   const userLogged = sessionStorage.getItem('todo_user')
@@ -65,13 +65,13 @@ const Tableheader = (props) => {
     let value = evt.target.value
 
     let allMatched = []
-    props.todos.forEach((todoo, i) => {
+    !props.todos.forEach((todoo, i) => {
       if (todoo.date === value) {
         allMatched.push(todoo)
       }
 
-      if(i === allTodos.length - 1) {
-        setAllTodos(allMatched)
+      if (i === allTodos.length - 1) {
+        props.todos = allMatched
       }
     })
   }
@@ -101,36 +101,37 @@ const Tableheader = (props) => {
           <Button onClick={addTask}><AiOutlinePlus className='mr-3' size={20} /> Add Task</Button>
         </div>
       </div>
+      <div className='overflow-x-auto md:w-[70vw] w-[90vw]'>
+        <Table className='table-auto overflow-scroll w-full'>
+          <Table.Head>
+            {['Task', 'Date Created', 'Time', 'Details', 'Status', 'Action'].map((ittem, i) => (
+              <Table.HeadCell key={i}>{ittem}</Table.HeadCell>
+            ))}
+          </Table.Head>
+          <Table.Body className="divide-y">
+            {dBData.length > 0 &&
+              dBData.map((item, i) => {
+                return (
+                  <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800" key={item.id}>
+                    <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
+                      {item.item}
+                    </Table.Cell>
+                    <Table.Cell>{item.date}</Table.Cell>
+                    <Table.Cell>{item.time}</Table.Cell>
+                    <Table.Cell>{item.details}</Table.Cell>
+                    <Table.Cell>{item.status}</Table.Cell>
+                    <Table.Cell className="flex space-x-2">
+                      <Button size="xs" onClick={() => EditTaskBtn(item.id, item.item, item.date, item.details)}>Edit</Button>
+                      <Button size="xs" color='failure' onClick={() => deleTaskBtn(item.id)}>Delete</Button>
+                    </Table.Cell>
+                  </Table.Row>
+                )
+              })}
 
-      <Table>
-        <Table.Head>
-          {['Task', 'Date Created', 'Time', 'Details', 'Status', 'Action'].map((ittem, i) => (
-            <Table.HeadCell key={i}>{ittem}</Table.HeadCell>
-          ))}
-        </Table.Head>
-        <Table.Body className="divide-y">
-          {allTodos.length > 0 &&
-            allTodos.map((item, i) => {
-              return (
-                <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800" key={item.id}>
-                  <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                    {item.item}
-                  </Table.Cell>
-                  <Table.Cell>{item.date}</Table.Cell>
-                  <Table.Cell>{item.time}</Table.Cell>
-                  <Table.Cell>{item.details}</Table.Cell>
-                  <Table.Cell>{item.status}</Table.Cell>
-                  <Table.Cell className="flex space-x-2">
-                    <Button size="xs" onClick={() => EditTaskBtn(item.id, item.item, item.date, item.details)}>Edit</Button>
-                    <Button size="xs" color='failure' onClick={() => deleTaskBtn(item.id)}>Delete</Button>
-                  </Table.Cell>
-                </Table.Row>
-              )
-            })}
 
-
-        </Table.Body>
-      </Table>
+          </Table.Body>
+        </Table>
+      </div>
     </div>
   );
 };

@@ -15,7 +15,7 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-const EditingTaskModal = ({ editTaskModal, setEditTaskModal, todoName, taskId, taskDetail }) => {
+const EditingTaskModal = ({ editTaskModal, setEditTaskModal, todoName, taskId, taskDetail, todos }) => {
 
   const dispatch = useDispatch();
   const [taskName, setTaskName] = useState(todoName)
@@ -28,7 +28,7 @@ const EditingTaskModal = ({ editTaskModal, setEditTaskModal, todoName, taskId, t
       updateTodos({ id, item: taskName, status: taskStatus, details: taskDetails })
     )
     setEditTaskModal(false)
-
+    sessionStorage.setItem('todoData', JSON.stringify(todos))
   }
 
   function handleChangeName(evt) {
