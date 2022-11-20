@@ -1,13 +1,14 @@
 import React, { useState } from 'react'
-import { Button, TextInput, Modal, Label } from "flowbite-react";
+import { Button, TextInput, Modal, Label, Textarea } from "flowbite-react";
 
-import { connect, useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addTodos } from "../redux/reducer";
 import { useNavigate } from "react-router-dom";
 
 const AddingTaskModal = (props) => {
   const dispatch = useDispatch();
   const [todo, setTodo] = useState("");
+  const [details, setDetails] = useState("")
   const [showModal, setShowModal] = useState(true)
 
   const navigate = useNavigate();
@@ -16,6 +17,10 @@ const AddingTaskModal = (props) => {
     setTodo(e.target.value);
   };
 
+  const handleChangeDet = (e) => {
+    setDetails(e.target.value)
+  }
+
   const createTask = (e) => {
     e.preventDefault()
 
@@ -23,12 +28,16 @@ const AddingTaskModal = (props) => {
       alert("Input is Empty");
     } else {
       let date = new Date()
+      let splitter = date.toISOString().split('T')
+      let time = splitter[1].split('.')
 
       dispatch(
         addTodos({
           id: Math.floor(Math.random() * 1000),
           item: todo,
-          date: date.toISOString(),
+          details: details,
+          date: splitter[0],
+          time: time[0],
           status: 'Ongoing',
         })
       );
@@ -63,17 +72,27 @@ const AddingTaskModal = (props) => {
                 required={true}
               />
             </div>
+
+            <div>
+              <div className="mb-2 block">
+                <Label
+                  htmlFor="details"
+                  value="Details"
+                />
+              </div>
+              <Textarea
+                id="details"
+                type="text"
+                onChange={(e) => handleChangeDet(e)}
+                defaultValue={details}
+                placeholder=""
+                required={true}
+              />
+            </div>
             <Button type="submit" className='mt-5' onClick={createTask}>
               Create Task
             </Button>
           </form>
-
-          <ul>
-            {/* {props.todos.length > 0 &&
-            props.todos.map((item) => {
-              return <li key={item.id}>{item.item}</li>;
-            })} */}
-          </ul>
         </Modal.Body>
       </Modal>
     </>
