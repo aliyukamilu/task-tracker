@@ -1,9 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { todosData } from './todosData'
 
-sessionStorage.setItem('todoData', JSON.stringify(todosData))
+if (!sessionStorage.getItem('todoData')) {
+  sessionStorage.setItem('todoData', JSON.stringify(todosData))
+}
 
-const initialState = todosData
+async function getItems() {
+  return JSON.parse(sessionStorage.getItem('todoData'))
+}
+// const initialState = todosData
+
+const initialState = await getItems()
+const filtUsers = await getItems()
 
 const addTodoReducer = createSlice({
   name: "todos",
@@ -24,8 +32,8 @@ const addTodoReducer = createSlice({
     },
 
     filterTodo: (state, action) => {
-      let newData = state.filter((item) => item.date === action.payload);
-      return newData
+      return filtUsers.filter((itm) => itm.date === action.payload)
+
     },
 
     updateTodos: (state, action) => {

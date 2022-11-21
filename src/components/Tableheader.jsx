@@ -72,9 +72,9 @@ const Tableheader = (props) => {
   function filterByDate(evt) {
     let Data = props.todos
     let value = evt.target.value
-    let newData = Data.filter(itm => itm.date === value)
-    setAllTodos(newData)
-
+    // let newData = Data.filter(itm => itm.date === value)
+    // setAllTodos(newData)
+    dispatch(filterTodo(value))
   }
 
   return (
@@ -105,7 +105,7 @@ const Tableheader = (props) => {
             <div className="flex justify-center gap-4">
               <Button
                 color="failure"
-              onClick={deleteTask}
+                onClick={deleteTask}
               >
                 Yes, I'm sure
               </Button>
