@@ -110,10 +110,10 @@ const Tableheader = (props) => {
 
       <div className="flex justify-between items-center mb-5">
         <div className="text-left">
-          <Label htmlFor="date" value="Filter By date" />
+          <Label htmlFor="date" value="Filter By date" className="text-white" />
           <TextInput id="date" type="date" onChange={filterByDate} />
         </div>
-        <div className="">
+        <div className="  mt-5">
           <Button onClick={addTask}>
             <AiOutlinePlus className="mr-3" size={20} /> Add Task
           </Button>

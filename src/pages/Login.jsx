@@ -38,7 +38,11 @@ const Login = () => {
           <h1 className="text-2xl font-bold">Login</h1>
           <div>
             <div className="mb-2 block text-left">
-              <Label htmlFor="username" value="Your username" />
+              <Label
+                htmlFor="username"
+                value="Your username"
+                className="text-white"
+              />
             </div>
             <TextInput
               id="username"
@@ -52,7 +56,11 @@ const Login = () => {
           </div>
           <div>
             <div className="mb-2 block text-left">
-              <Label htmlFor="password" value="Your password" />
+              <Label
+                htmlFor="password"
+                value="Your password"
+                className="text-white"
+              />
             </div>
             <TextInput
               id="password"
